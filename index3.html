@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>node ipq day3</title>
+    <style>
+        b{
+            color:red;
+            font-size: 26px;
+            
+            
+        
+        }
+        pre{
+            color:black;
+            font-size: 20px;
+       
+        }
+        p{  font-size: 20px;
+        
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <h1 style="color: green; text-decoration: underline;">NODE INTERVIEW PREPARATION DAY-3</h1>
+    <b>1.How do you create a simple Express.js application?</b>
+    <p>npm i express</p>
+    <pre>
+        const express = require('express')
+const app=express();
+app.get("/" , (req, res) =>{
+    res.send("Hello World");
+})
+app.listen(3000, () =>{
+    console.log("server is running");
+})
+
+    </pre>
+
+    <b>2.Implementation of all type of exports in backend application</b>
+    <p>There are two exports named and default named export we need to export by using curly bracess</p>
+    <pre>const add = (a, b) => {
+        return a + b;
+    }
+    const sub = (a, b) => {
+        return a - b;
+    }
+    const multi = (a, b) => {
+        return a * b;
+    }
+    const divide = (a, b) => {
+        return a / b;
+    }
+    
+    module.exports = { add, sub, multi, divide };
+    
+    </pre>
+<b>3.Create a middleware which will be applicable to all the routes</b>
+
+
+<pre>
+    
+    const express = require('express');
+const app = express();
+const mid=(req,res,next)=>{
+    console.log("i am middleware1 globally");
+    next();
+}
+
+app.use(mid);
+
+app.get('/',mid,(req,res)=>{
+    res.send('hello from home');
+
+});
+app.get('/about', mid,(req,res)=>{
+    res.send(' I am from About page')
+});
+app.get('/contact',mid,(req,res)=>{
+    res.send(' I am from Contact Page')
+});
+app.get('/something',mid,(req,res)=>{
+    res.send('I am from Something')
+});
+
+app.listen(8000,()=>{
+    console.log('server is running');
+})
+</pre>
+<b>4.Implement CORS.</b>
+<p>npm i cors we need to import cors by using this command</p>
+<pre>
+    const express=require('express')
+const app=express();
+const cors=require('cors');
+app.use(cors())
+app.get("/mahathi",(req,res)=>{
+    console.log(req.query);
+    res.send("cors is used");
+})
+app.listen(9000,()=>{
+    console.log("server is running");
+});
+</pre>
+
+</center>
+    
+</body>
+</html>
